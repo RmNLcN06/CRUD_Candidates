@@ -6,42 +6,42 @@ session_start();
 if($_POST) 
 {
     if(
-        isset($_POST['nom_candidat']) && !empty($_POST['nom_candidat'])
-        && isset($_POST['prenom_candidat']) && !empty($_POST['prenom_candidat'])
-        && isset($_POST['email_candidat']) && !empty($_POST['email_candidat'])
-        && isset($_POST['pays_candidat']) && !empty($_POST['pays_candidat'])
-        && isset($_POST['ville_candidat']) && !empty($_POST['ville_candidat'])
-        && isset($_POST['cd_postal_candidat']) && !empty($_POST['cd_postal_candidat'])
-        && isset($_POST['marches_candidat']) && !empty($_POST['marches_candidat'])
-        && isset($_POST['technos_candidat']) && !empty($_POST['technos_candidat'])
+        isset($_POST['nom']) && !empty($_POST['nom'])
+        && isset($_POST['prenom']) && !empty($_POST['prenom'])
+        && isset($_POST['email']) && !empty($_POST['email'])
+        && isset($_POST['pays']) && !empty($_POST['pays'])
+        && isset($_POST['ville']) && !empty($_POST['ville'])
+        && isset($_POST['cd_postal']) && !empty($_POST['cd_postal'])
+        && isset($_POST['marches']) && !empty($_POST['marches'])
+        && isset($_POST['technos']) && !empty($_POST['technos'])
     ) 
     {
         // Inclusion de la connexion à la base de donnée
         require_once('req/_connect.php');
 
         //Réinitialisation des données envoyées
-        $nom = strip_tags($_POST['nom_candidat']);
-        $prenom = strip_tags($_POST['prenom_candidat']);
-        $email = strip_tags($_POST['email_candidat']);
-        $pays = strip_tags($_POST['pays_candidat']);
-        $ville = strip_tags($_POST['ville_candidat']);
-        $cd_postal = strip_tags($_POST['cd_postal_candidat']);
-        $marches = strip_tags($_POST['marches_candidat']);
-        $technos = strip_tags($_POST['technos_candidat']);
+        $nom = strip_tags($_POST['nom']);
+        $prenom = strip_tags($_POST['prenom']);
+        $email = strip_tags($_POST['email']);
+        $pays = strip_tags($_POST['pays']);
+        $ville = strip_tags($_POST['ville']);
+        $cd_postal = strip_tags($_POST['cd_postal']);
+        $marches = strip_tags($_POST['marches']);
+        $technos = strip_tags($_POST['technos']);
 
-        $sql = 'INSERT INTO candidat (nom_candidat, prenom_candidat, email_candidat, pays_candidat, ville_candidat, cd_postal_candidat, marches_candidat, technos_candidat) VALUES(:nom_candidat, :prenom_candidat, :email_candidat, :pays_candidat, :ville_candidat, :cd_postal_candidat, :marches_candidat, :technos_candidat);';
+        $sql = 'INSERT INTO candidat (nom, prenom, email, pays, ville, cd_postal, marches, technos) VALUES(:nom, :prenom, :email, :pays, :ville, :cd_postal, :marches, :technos);';
 
         // Prépare la requête
         $query = $database->prepare($sql);
 
-        $query->bindValue(':nom_candidat', $nom, PDO::PARAM_STR);
-        $query->bindValue(':prenom_candidat', $prenom, PDO::PARAM_STR);
-        $query->bindValue(':email_candidat', $email, PDO::PARAM_STR);
-        $query->bindValue(':pays_candidat', $pays, PDO::PARAM_STR);
-        $query->bindValue(':ville_candidat', $ville, PDO::PARAM_STR);
-        $query->bindValue(':cd_postal_candidat', $cd_postal, PDO::PARAM_STR);
-        $query->bindValue(':marches_candidat', $marches, PDO::PARAM_STR);
-        $query->bindValue(':technos_candidat', $technos, PDO::PARAM_STR);
+        $query->bindValue(':nom', $nom, PDO::PARAM_STR);
+        $query->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+        $query->bindValue(':email', $email, PDO::PARAM_STR);
+        $query->bindValue(':pays', $pays, PDO::PARAM_STR);
+        $query->bindValue(':ville', $ville, PDO::PARAM_STR);
+        $query->bindValue(':cd_postal', $cd_postal, PDO::PARAM_STR);
+        $query->bindValue(':marches', $marches, PDO::PARAM_STR);
+        $query->bindValue(':technos', $technos, PDO::PARAM_STR);
 
         $query->execute();
 

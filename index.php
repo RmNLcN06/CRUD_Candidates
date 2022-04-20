@@ -429,15 +429,15 @@ require_once('req/_close.php')
                                             foreach($result as $candidat) {
                                         ?>
                                             <tr>
-                                                <td><?= $candidat['id_candidat'] ?></td>
-                                                <td><?= $candidat['nom_candidat'] ?></td>
-                                                <td><?= $candidat['prenom_candidat'] ?></td>
-                                                <td><?= $candidat['email_candidat'] ?></td>
-                                                <td><?= $candidat['pays_candidat'] ?></td>
-                                                <td><?= $candidat['ville_candidat'] ?></td>
-                                                <td><?= $candidat['cd_postal_candidat'] ?></td>
-                                                <td><?= $candidat['marches_candidat'] ?></td>
-                                                <td><?= $candidat['technos_candidat'] ?></td>
+                                                <td><?= $candidat['id'] ?></td>
+                                                <td><?= $candidat['nom'] ?></td>
+                                                <td><?= $candidat['prenom'] ?></td>
+                                                <td><?= $candidat['email'] ?></td>
+                                                <td><?= $candidat['pays'] ?></td>
+                                                <td><?= $candidat['ville'] ?></td>
+                                                <td><?= $candidat['cd_postal'] ?></td>
+                                                <td><?= $candidat['marches'] ?></td>
+                                                <td><?= $candidat['technos'] ?></td>
                                                 <td>
                                                     <a href="details.php?id=<?= $candidat['id'] ?>" class="btn btn-success mx-1">Voir</a>
                                                     <a href="edit.php?id=<?= $candidat['id'] ?>" class="btn btn-warning mx-1">Modifier</a>

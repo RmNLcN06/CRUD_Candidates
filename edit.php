@@ -6,45 +6,45 @@ session_start();
 if($_POST) 
 {
     if(
-        isset($_POST['id_candidat']) && !empty($_POST['id_candidat'])
-        && isset($_POST['nom_candidat']) && !empty($_POST['nom_candidat'])
-        && isset($_POST['prenom_candidat']) && !empty($_POST['prenom_candidat'])
-        && isset($_POST['email_candidat']) && !empty($_POST['email_candidat'])
-        && isset($_POST['pays_candidat']) && !empty($_POST['pays_candidat'])
-        && isset($_POST['ville_candidat']) && !empty($_POST['ville_candidat'])
-        && isset($_POST['cd_postal_candidat']) && !empty($_POST['cd_postal_candidat'])
-        && isset($_POST['marches_candidat']) && !empty($_POST['marches_candidat'])
-        && isset($_POST['technos_candidat']) && !empty($_POST['technos_candidat'])
+        isset($_POST['id']) && !empty($_POST['id'])
+        && isset($_POST['nom']) && !empty($_POST['nom'])
+        && isset($_POST['prenom']) && !empty($_POST['prenom'])
+        && isset($_POST['email']) && !empty($_POST['email'])
+        && isset($_POST['pays']) && !empty($_POST['pays'])
+        && isset($_POST['ville']) && !empty($_POST['ville'])
+        && isset($_POST['cd_postal']) && !empty($_POST['cd_postal'])
+        && isset($_POST['marches']) && !empty($_POST['marches'])
+        && isset($_POST['technos']) && !empty($_POST['technos'])
     ) 
     {
         // Inclusion de la connexion à la base de donnée
         require_once('req/_connect.php');
 
         //Réinitialisation des données envoyées
-        $id = strip_tags($_POST['id_candidat']);
-        $nom = strip_tags($_POST['nom_candidat']);
-        $prenom = strip_tags($_POST['prenom_candidat']);
-        $email = strip_tags($_POST['email_candidat']);
-        $pays = strip_tags($_POST['pays_candidat']);
-        $ville = strip_tags($_POST['ville_candidat']);
-        $cd_postal = strip_tags($_POST['cd_postal_candidat']);
-        $marches = strip_tags($_POST['marches_candidat']);
-        $technos = strip_tags($_POST['technos_candidat']);
+        $id = strip_tags($_POST['id']);
+        $nom = strip_tags($_POST['nom']);
+        $prenom = strip_tags($_POST['prenom']);
+        $email = strip_tags($_POST['email']);
+        $pays = strip_tags($_POST['pays']);
+        $ville = strip_tags($_POST['ville']);
+        $cd_postal = strip_tags($_POST['cd_postal']);
+        $marches = strip_tags($_POST['marches']);
+        $technos = strip_tags($_POST['technos']);
 
-        $sql = 'UPDATE candidat SET nom_candidat = :nom_candidat, prenom_candidat = :prenom_candidat, email_candidat = :email_candidat, pays_candidat = :pays_candidat, ville_candidat = :ville_candidat, cd_postal_candidat = :cd_postal_candidat, marches_candidat = :marches_candidat, technos_candidat = :technos_candidat WHERE id_candidat = :id_candidat;';
+        $sql = 'UPDATE candidat SET nom = :nom, prenom = :prenom, email = :email, pays = :pays, ville = :ville, cd_postal = :cd_postal, marches = :marches, technos = :technos WHERE id = :id;';
 
         // Prépare la requête
         $query = $database->prepare($sql);
 
-        $query->bindValue(':id_candidat', $id, PDO::PARAM_INT);
-        $query->bindValue(':nom_candidat', $nom, PDO::PARAM_STR);
-        $query->bindValue(':prenom_candidat', $prenom, PDO::PARAM_STR);
-        $query->bindValue(':email_candidat', $email, PDO::PARAM_STR);
-        $query->bindValue(':pays_candidat', $pays, PDO::PARAM_STR);
-        $query->bindValue(':ville_candidat', $ville, PDO::PARAM_STR);
-        $query->bindValue(':cd_postal_candidat', $cd_postal, PDO::PARAM_STR);
-        $query->bindValue(':marches_candidat', $marches, PDO::PARAM_STR);
-        $query->bindValue(':technos_candidat', $technos, PDO::PARAM_STR);
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->bindValue(':nom', $nom, PDO::PARAM_STR);
+        $query->bindValue(':prenom', $prenom, PDO::PARAM_STR);
+        $query->bindValue(':email', $email, PDO::PARAM_STR);
+        $query->bindValue(':pays', $pays, PDO::PARAM_STR);
+        $query->bindValue(':ville', $ville, PDO::PARAM_STR);
+        $query->bindValue(':cd_postal', $cd_postal, PDO::PARAM_STR);
+        $query->bindValue(':marches', $marches, PDO::PARAM_STR);
+        $query->bindValue(':technos', $technos, PDO::PARAM_STR);
 
         $query->execute();
 
@@ -59,20 +59,20 @@ if($_POST)
 };
 
 // Vérification si l'id existe ET pas vide dans l'URL
-if(isset($_GET['id_candidat']) && !empty($_GET['id_candidat']))
+if(isset($_GET['id']) && !empty($_GET['id']))
 {
     require_once('req/_connect.php');
 
     // Réinitialisation de l'id envoyé
-    $id = strip_tags($_GET['id_candidat']);
+    $id = strip_tags($_GET['id']);
 
-    $sql = "SELECT * FROM candidat WHERE id_candidat = :id_candidat";
+    $sql = "SELECT * FROM candidat WHERE id = :id";
 
     // Préparation de la requête
     $query = $database->prepare($sql);
 
     // Liaison des paramêtres de l'id
-    $query->bindValue(':id_candidat', $id, PDO::PARAM_INT);
+    $query->bindValue(':id', $id, PDO::PARAM_INT);
 
     // Exécution de la requête
     $query->execute();
@@ -475,37 +475,37 @@ else
                                 <form method="post">
                                     <div class="form-group">
                                         <label for="nom">Nom</label>
-                                        <input type="text" id="nom" name="nom" class="form-control" value="<?= htmlentities($candidat['nom_candidat']); ?>">
+                                        <input type="text" id="nom" name="nom" class="form-control" value="<?= htmlentities($candidat['nom']); ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="prenom">Prenom</label>
-                                        <input type="text" id="prenom" name="prenom" class="form-control" value="<?= htmlentities($candidat['prenom_candidat']); ?>">
+                                        <input type="text" id="prenom" name="prenom" class="form-control" value="<?= htmlentities($candidat['prenom']); ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="text" id="email" name="email" class="form-control" value="<?= htmlentities($candidat['email_candidat']); ?>">
+                                        <input type="text" id="email" name="email" class="form-control" value="<?= htmlentities($candidat['email']); ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="pays">Pays</label>
-                                        <input type="text" id="pays" name="pays" class="form-control" value="<?= htmlentities($candidat['pays_candidat']); ?>">
+                                        <input type="text" id="pays" name="pays" class="form-control" value="<?= htmlentities($candidat['pays']); ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="ville">Ville</label>
-                                        <input type="text" id="ville" name="ville" class="form-control" value="<?= htmlentities($candidat['ville_candidat']); ?>">
+                                        <input type="text" id="ville" name="ville" class="form-control" value="<?= htmlentities($candidat['ville']); ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="cd_postal">Code Postal</label>
-                                        <input type="text" id="cd_postal" name="cd_postal" class="form-control" value="<?= htmlentities($candidat['cd_postal_candidat']); ?>">
+                                        <input type="text" id="cd_postal" name="cd_postal" class="form-control" value="<?= htmlentities($candidat['cd_postal']); ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="marches">Marchés</label>
-                                        <input type="text" id="marches" name="marches" class="form-control" value="<?= htmlentities($candidat['marches_candidat']); ?>">
+                                        <input type="text" id="marches" name="marches" class="form-control" value="<?= htmlentities($candidat['marches']); ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="technos">Technologies</label>
-                                        <input type="text" id="technos" name="technos" class="form-control" value="<?= htmlentities($candidat['technos_candidat']); ?>">
+                                        <input type="text" id="technos" name="technos" class="form-control" value="<?= htmlentities($candidat['technos']); ?>">
                                     </div>
-                                    <input type="hidden" name="id_candidat" value="<?= $produit['id_candidat']; ?>">
+                                    <input type="hidden" name="id" value="<?= $candidat['id']; ?>">
                                     <button class="btn btn-primary">Envoyer</button>
                                 </form>
                             </section>
