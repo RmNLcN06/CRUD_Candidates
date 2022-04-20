@@ -386,7 +386,7 @@ require_once('req/_close.php')
                     <!-- Page Heading -->
                     <h1 class="h3 mb-4 text-gray-800">Page de base</h1>
 
-                    <main class="container">
+                    <main>
                         <div class="row">
                             <section class="col-12">
                                 <?php 
@@ -402,7 +402,7 @@ require_once('req/_close.php')
                                 
                                     if(!empty($_SESSION['message'])) {
                                 ?>
-                                    <div class="alert alert-danger alert-dismissible" role="alert">
+                                    <div class="alert alert-success alert-dismissible" role="alert">
                                         <a href="./index.php" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                                         <?= $_SESSION['message']; ?>
                                     </div>
